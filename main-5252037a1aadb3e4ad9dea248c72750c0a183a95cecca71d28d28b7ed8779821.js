@@ -541,16 +541,7 @@ MearmConn = function(mirobot, options){
   }
   
   this.autoConnect = function(){
-    var conf = this.extractConfig();
-    if(typeof conf['m'] !== 'undefined'){
-      // Check if there's already an address in the URL
-      return this.connect(conf['m']);
-    }
-    mirobot.fetchDevices(function(devices){
-      if(Object.keys(devices).length == 1){
-        self.connect(Object.keys(devices)[0]);
-      }
-    });
+    return this.connect(window.location.hostname);
   }
   
   this.updateMenu = function(){
