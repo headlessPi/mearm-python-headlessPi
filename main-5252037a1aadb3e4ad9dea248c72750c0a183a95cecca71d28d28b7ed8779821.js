@@ -762,7 +762,6 @@ MearmApp = function(options){
   window.l10n = (typeof options.l10n !== 'undefined' && options.l10n);
   this.languages =  options.languages;
   if(l10n) l10nMenu('l10n', this.languages);
-  this.initFullScreenButton();
   this.mearm = new Mearm();
   new MeArmControlMenu(this.mearm, document.querySelector('#control'));
   new MearmConn(this.mearm);
@@ -781,26 +780,6 @@ MearmApp.prototype.initPersistence = function(conf){
     this.saveMenu = new MirobotSave(document.querySelector('#save'), conf);
   }
 }
-
-MearmApp.prototype.initFullScreenButton = function(conf){
-  if(typeof document.fullscreenEnabled === 'undefined') return document.querySelector('#fullscreen').classList.add('hidden');
-
-  var setBodyClass = function(){
-    var fn = document.fullscreenElement ? 'add' : 'remove'
-    document.body.classList[fn]('fullscreen');
-  }
-
-  document.getElementById('fullscreen').addEventListener('click', function(){
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
-  });
-  document.addEventListener('fullscreenchange', setBodyClass, false);
-  setBodyClass();
-}
-;
 var Persister = function(conf){
   var self = this;
   this.namespace = window.location.pathname.replace(/\//g, '').replace('index.html', '');
