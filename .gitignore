@@ -1,0 +1,3 @@
+debian/headlesspi-mearm-python*
+debian/files
+debian/debhelper-build-stamp
